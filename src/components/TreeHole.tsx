@@ -5,18 +5,19 @@ export default function TreeHole() {
   const [text, setText] = useState("");
   const handleSubmit = () => {
     if (!text) return;
-    alert("Your secret is saved in the tree! 🌳");
+    alert("Your secret is safely stored in the tree 🌳");
     setText("");
   };
 
   return (
     <Box
-      bgImage="url('/images/treehole-bg.svg')"
+      bgImage="url('/images/tree-bg.svg')"
       bgSize="cover"
       bgPosition="center"
       borderRadius="md"
-      py={16}
-      px={8}
+      py={{ base: 16, md: 24 }}
+      px={{ base: 6, md: 12 }}
+      minH="400px"
     >
       <VStack spacing={4}>
         <Textarea
@@ -27,9 +28,7 @@ export default function TreeHole() {
           bg="whiteAlpha.900"
           borderRadius="md"
         />
-        <Button colorScheme="teal" size="md" onClick={handleSubmit}>
-          Send
-        </Button>
+        <Button colorScheme="teal" size="md" onClick={handleSubmit}>Send</Button>
       </VStack>
     </Box>
   );
