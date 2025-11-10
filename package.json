@@ -1,15 +1,20 @@
 {
-  "name": "emovibe-pro",
+  "name": "emovibe-chakra",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start -p 3000",
-    "lint": "next lint",
-    "format": "prettier --write ."
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.7.0",
+    "@chakra-ui/icons": "^2.0.9",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@supabase/supabase-js": "^2.24.0",
     "openai": "^4.10.0",
     "stripe": "^12.0.0",
@@ -18,13 +23,11 @@
     "react-dom": "18.2.0",
     "swr": "^2.1.0",
     "axios": "^1.4.0",
-    "zod": "^3.22.2"
+    "zod": "^3.22.2",
+    "prisma": "^5.10.1"
   },
   "devDependencies": {
     "typescript": "^5.6.0",
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0",
     "eslint": "8.44.0",
     "prettier": "^2.8.0"
   }
