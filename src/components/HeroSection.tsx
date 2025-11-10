@@ -8,22 +8,22 @@ export default function HeroSection() {
       bgSize="cover"
       bgPosition="center"
       borderRadius="md"
-      py={24}
-      px={6}
+      py={{ base: 20, md: 32 }}
+      px={{ base: 6, md: 12 }}
       textAlign="center"
     >
       <Heading as="h1" size="2xl" color="teal.700" mb={4}>
         EmoVibe
       </Heading>
-      <Text fontSize="lg" color="gray.700" mb={6}>
-        AI customizable companions & vetted human supporters — Weekly membership $99.
+      <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.700" mb={6}>
+        AI & Human emotional support, weekly membership $99.
       </Text>
-      <HStack spacing={4} justify="center">
+      <HStack spacing={4} justify="center" wrap="wrap">
         <Link href="/customize" legacyBehavior>
-          <Button colorScheme="teal" size="lg">Create AI Role</Button>
+          <Button colorScheme="teal" size="lg" mb={{ base: 2, md: 0 }}>Create AI Role</Button>
         </Link>
         <Link href="/chat" legacyBehavior>
-          <Button variant="outline" size="lg">Enter Chat</Button>
+          <Button variant="outline" colorScheme="teal" size="lg">Enter Chat</Button>
         </Link>
       </HStack>
     </Box>
