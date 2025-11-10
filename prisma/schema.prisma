@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  fullName  String?
+  country   String?
+  isHelper  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  subscriptions Subscription[]
+  conversations Conversation[]
+}
+
+model Subscription {
+  id                   Int     @id @default(autoincrement())
+  profileId            String
+  stripeSubscriptionId String?
+  status               String?
+  currentPeriodEnd     DateTime?
+  profile              Profile @relation(fields: [profileId], references: [id])
+}
+
+model Conversation {
+  id           Int       @id @default(autoincrement())
+  type         String
+  ownerId      String
+  participants Json?
+  metadata     Json?
+  createdAt    DateTime  @default(now())
+  messages     Message[]
+  owner        Profile   @relation(fields: [ownerId], references: [id])
+}
+
+model Message {
+  id             Int      @id @default(autoincrement())
+  conversationId Int
+  senderId       String?
+  role           String
+  body           String   // encrypted content
+  createdAt      DateTime @default(now())
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+}
