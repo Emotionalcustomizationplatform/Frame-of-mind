@@ -1,10 +1,11 @@
 // src/components/ChatWindow.tsx
 "use client";
+import { Box, Input, Button, VStack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function ChatWindow({ initialMessages = [], conversationId }: { initialMessages?: any[]; conversationId?: number }) {
-  const [messages, setMessages] = useState(initialMessages);
+export default function ChatWindow({ conversationId }: { conversationId?: number }) {
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,28 +16,28 @@ export default function ChatWindow({ initialMessages = [], conversationId }: { i
     setInput("");
     setLoading(true);
     try {
-      const { data } = await axios.post("/api/openai/chat", { conversationId, messages: [...messages, userMsg], roleTemplate: "You are a gentle supportive friend." });
+      const { data } = await axios.post("/api/openai/chat", { conversationId, messages: [...messages, userMsg], roleTemplate: "You are a gentle supportive companion." });
       setMessages(prev => [...prev, { role: "assistant", content: data.reply }]);
-    } catch (err) {
-      setMessages(prev => [...prev, { role: "assistant", content: "Sorry, there was an error." }]);
+    } catch (e) {
+      setMessages(prev => [...prev, { role: "assistant", content: "Error: failed to get response." }]);
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="max-w-3xl mx-auto border rounded-lg p-4">
-      <div className="min-h-[240px]">
+    <Box borderWidth={1} borderRadius="md" p={4}>
+      <VStack align="stretch" spacing={3} minH="300px">
         {messages.map((m, i) => (
-          <div key={i} className={`mb-3 ${m.role === "user" ? "text-right" : "text-left"}`}>
-            <div className={`inline-block p-3 rounded-lg ${m.role === "user" ? "bg-sky-100" : "bg-slate-100"}`}>{m.content}</div>
-          </div>
+          <Box key={i} alignSelf={m.role === "user" ? "flex-end" : "flex-start"} bg={m.role === "user" ? "teal.50" : "gray.100"} p={3} borderRadius="md">
+            <Text>{m.content}</Text>
+          </Box>
         ))}
-      </div>
-      <div className="flex gap-2 mt-4">
-        <input className="flex-1 border p-2 rounded" value={input} onChange={e => setInput(e.target.value)} placeholder="Type a message..." />
-        <button className="px-4 py-2 bg-primary text-white rounded" onClick={send} disabled={loading}>{loading ? "..." : "Send"}</button>
-      </div>
-    </div>
+      </VStack>
+      <Box mt={4} display="flex" gap={2}>
+        <Input value={input} onChange={e => setInput(e.target.value)} placeholder="Type a message..." />
+        <Button onClick={send} isLoading={loading} colorScheme="teal">Send</Button>
+      </Box>
+    </Box>
   );
 }
