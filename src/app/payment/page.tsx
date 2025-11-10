@@ -1,25 +1,30 @@
 "use client";
-import { useState } from "react";
-import { VStack, Box, HStack, Select, Text, Button } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { VStack, Box, HStack, Select, Text } from "@chakra-ui/react";
 import ResponsiveContainer from "@/components/ui/ResponsiveContainer";
 import ButtonPrimary from "@/components/ui/ButtonPrimary";
+import { supabase } from "@/lib/supabase";
 
-// 注意：Stripe / PayPal / 微信支付需在后端生成 session 或 payment intent
 export default function PaymentPage() {
   const [service, setService] = useState<"ai"|"human">("ai");
   const [method, setMethod] = useState<"stripe"|"paypal"|"wechat">("stripe");
+  const user = supabase.auth.user();
+
+  useEffect(() => {
+    if (!user) alert("Please login first to make payment!");
+  }, [user]);
 
   const handlePayment = async () => {
-    if (method === "stripe") {
-      // 调用后端 Stripe Session API
-      alert(`Redirecting to Stripe checkout for ${service.toUpperCase()} service`);
-    } else if (method === "paypal") {
-      // 调用后端 PayPal Checkout
-      alert(`Redirecting to PayPal for ${service.toUpperCase()} service`);
-    } else if (method === "wechat") {
-      // 调用后端微信支付接口，生成二维码
-      alert(`Please scan the WeChat QR code to pay for ${service.toUpperCase()} service`);
-    }
+    if (!user) return;
+    alert(`Simulated ${method} payment for ${service} by ${user.email}`);
+    // 调用后端生成支付 session / 微信二维码 / PayPal order
+    await fetch('/api/payment/webhook', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: user.id, service_type: service, status: 'completed' })
+    });
+    alert("Payment completed! You can now chat.");
+    window.location.href = "/chat";
   };
 
   return (
