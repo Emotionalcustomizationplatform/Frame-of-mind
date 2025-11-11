@@ -1,14 +1,17 @@
-import CustomizeRoleForm from "@/components/CustomizeRoleForm";
-import ResponsiveContainer from "@/components/ui/ResponsiveContainer";
+'use client';
+import CustomizeRoleForm from '@/components/CustomizeRoleForm';
+import ResponsiveContainer from '@/components/ui/ResponsiveContainer';
 
 export default function CustomizePage() {
+  const handleCreate = (data: any) => {
+    console.log('New AI role created:', data);
+    alert(`Your AI character "${data.roleName}" is ready!`);
+  };
+
   return (
     <ResponsiveContainer>
-      <h1 style={{ fontSize: '1.75rem', fontWeight: 600, color: '#2C7A7B', marginBottom: 24 }}>Create Your AI Companion</h1>
-      <CustomizeRoleForm />
-      <p style={{ marginTop: 16, fontSize: '0.85rem', color: '#718096' }}>
-        Tip: Describe the companion's personality, gender, and special instructions. Do not request illegal actions.
-      </p>
+      <h2>Customize Your AI Character</h2>
+      <CustomizeRoleForm onSubmit={handleCreate} />
     </ResponsiveContainer>
   );
 }
