@@ -1,22 +1,16 @@
-
 {
-  "name": "emovibe-minimal",
-  "version": "0.1.0",
+  "name": "emovibe",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3000"
+    "start": "next start"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
     "next": "14.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@chakra-ui/react": "2.8.2",
-    "@emotion/react": "11.11.3",
-    "@emotion/styled": "11.11.0",
-    "react-icons": "5.2.1",
-    "@supabase/supabase-js": "2.39.4",
-    "axios": "1.7.4"
+    "react-dom": "18.2.0"
   }
 }
