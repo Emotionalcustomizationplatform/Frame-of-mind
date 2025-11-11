@@ -1,139 +1,86 @@
-/* ========== 基础全局样式 ========== */
+/* 🌈 EmoVibe Global Styles (No Images, Fully Vercel Safe) */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f9fafc;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(180deg, #f5f7fa, #dfe9f3);
+  min-height: 100vh;
   color: #222;
-  scroll-behavior: smooth;
 }
 
-/* ========== 链接 ========== */
-a {
-  color: #3b82f6;
-  text-decoration: none;
-  transition: 0.2s ease;
+header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.2rem 0;
+  text-align: center;
 }
 
-a:hover {
-  color: #2563eb;
+header h1 {
+  color: #3366cc;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-/* ========== 容器类 ========== */
 .container {
-  max-width: 1200px;
+  width: 90%;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 2rem 0;
 }
 
-/* ========== 按钮 ========== */
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.card h2 {
+  color: #333;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
 .button {
-  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  background-color: #3366cc;
   color: white;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .button:hover {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  transform: translateY(-1px);
+  background-color: #2851a3;
 }
 
-/* ========== 头部 ========== */
-header {
-  background-color: #ffffffcc;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-/* ========== 页面背景区域 ========== */
-.main-section {
-  background-color: #f9fafc;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ========== 卡片样式 ========== */
-.card {
-  background: #fff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  border-radius: 0.75rem;
-  padding: 2rem;
-  max-width: 500px;
-  width: 100%;
-  text-align: center;
-}
-
-.card h2 {
-  color: #111827;
-  margin-bottom: 1rem;
-}
-
-.card p {
-  color: #4b5563;
-  line-height: 1.6;
-}
-
-/* ========== 表单输入 ========== */
-input,
-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  margin: 0.5rem 0;
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-}
-
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-}
-
-/* ========== 页脚 ========== */
 footer {
+  margin-top: 3rem;
+  padding: 1rem 0;
   text-align: center;
-  padding: 1rem;
+  color: #888;
   font-size: 0.9rem;
-  color: #6b7280;
-  background-color: #f3f4f6;
-  border-top: 1px solid #e5e7eb;
 }
 
-/* ========== 响应式 ========== */
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-  header h1 {
-    font-size: 1.25rem;
-  }
-  .card {
-    padding: 1.5rem;
-  }
+.hollow-bg {
+  background-color: #f3f4f6; /* used for the "tree hole" (no image) */
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  text-align: center;
 }
