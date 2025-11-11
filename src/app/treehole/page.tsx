@@ -1,13 +1,15 @@
-import TreeHole from "@/components/TreeHole";
-import ResponsiveContainer from "@/components/ui/ResponsiveContainer";
+// src/app/treehole/page.tsx
+"use client";
+import { Box, Heading, Textarea, Button } from "@chakra-ui/react";
+import { useState } from "react";
 
 export default function TreeHolePage() {
+  const [v, setV] = useState("");
   return (
-    <ResponsiveContainer>
-      <TreeHole />
-      <p style={{ marginTop: 24, fontSize: '0.9rem', color: '#718096', textAlign: 'center' }}>
-        🌳 Your secrets are safe. Please avoid sharing illegal or harmful content.
-      </p>
-    </ResponsiveContainer>
+    <Box p={6}>
+      <Heading mb={4}>Tree Hole</Heading>
+      <Textarea value={v} onChange={(e)=>setV(e.target.value)} placeholder="Write anonymously..." mb={3} />
+      <Button onClick={()=>{ alert("Saved (demo)"); setV(""); }}>Submit</Button>
+    </Box>
   );
 }
