@@ -1,18 +1,10 @@
-// src/app/layout.tsx
-import "../styles/globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
+import '../styles/globals.css';
+import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: "EmoVibe",
-  description: "AI + Human emotional support"
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <ChakraProvider>{children}</ChakraProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
