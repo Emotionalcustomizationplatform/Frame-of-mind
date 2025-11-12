@@ -1,10 +1,8 @@
-export default function ResponsiveContainer({ children }: any) {
+import { ReactNode } from 'react';
+
+export default function ResponsiveContainer({ children }: { children: ReactNode }) {
   return (
-    <div style={{
-      maxWidth: 800,
-      margin: '0 auto',
-      padding: 20
-    }}>
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem' }}>
       {children}
     </div>
   );
