@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function ChatRoom() {
   const [messages, setMessages] = useState<string[]>([]);
@@ -7,10 +8,15 @@ export default function ChatRoom() {
   const handleSend = async () => {
     if (!input) return;
     setMessages(prev => [...prev, `You: ${input}`]);
-    setInput('');
 
-    // 模拟 AI 回复
-    setMessages(prev => [...prev, `AI: Hello, you said "${input}"`]);
+    try {
+      const res = await axios.post('/api/chat', { message: input });
+      setMessages(prev => [...prev, `AI: ${res.data.reply}`]);
+    } catch (err) {
+      setMessages(prev => [...prev, `AI: Error occurred`]);
+    }
+
+    setInput('');
   };
 
   return (
