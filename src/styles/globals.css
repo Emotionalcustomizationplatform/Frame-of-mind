@@ -1,20 +1,19 @@
-html, body {
-  padding: 0;
+/* 全局重置样式 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(120deg, #f0f4ff, #e0e7ff);
-  min-height: 100vh;
+  padding: 0;
 }
 
-button {
-  background: #4f46e5;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #f8f8f8;
+  color: #111;
 }
 
-button:hover {
-  background: #4338ca;
+a {
+  text-decoration: none;
+  color: inherit;
 }
